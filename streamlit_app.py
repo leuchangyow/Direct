@@ -4,6 +4,7 @@ import math
 import pandas as pd
 import streamlit as st
 import PIL
+import time
 
 
 st.title('DIRECT Project')
@@ -33,8 +34,9 @@ blur.image(ex_blur)
 
 input_data = st.file_uploader('Upload your TEM experiment photo')
 if input_data is not None:
-    #image_data = input_data.getvalue()
-    #st.image(image_data)
     input_image = PIL.Image.open(input_data)
     st.image(input_image)
     st.write('Uploaded the photo')
+
+    
+    
