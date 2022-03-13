@@ -1,13 +1,11 @@
-from collections import namedtuple
-import altair as alt
 import math
 import pandas as pd
 import streamlit as st
 import PIL
 import time
 import importlib
-from remove_cs import convert_to_dfimage, adjust_gray_value, show_edited_image
-from streamlit_cropper import st_cropper
+from REIP.image_processing.remove_cs import convert_to_dfimage, adjust_gray_value, show_edited_image
+#from streamlit_cropper import st_cropper
 from streamlit_drawable_canvas import st_canvas
 from REIP.prediction.Prediction1 import prediction
 
@@ -45,13 +43,12 @@ if input_data is not None:
     input_image = PIL.Image.open(input_data)
     st.image(input_image)
     prediction(input_image)
-    st.write('Uploaded the photo')
+    st.write(input_image[0])
+    predicted_image = input_image[1]
     if not realtime_update:
         st.write("Double click to save crop")
-        
-    
 
-    canvas_result = st_canvas(height = 300, width = 300, fill_color = 0 , drawing_mode = 'rect', stroke_width = 3, background_image = input_image)
+    canvas_result = st_canvas(height = 300, width = 300, fill_color = 0 , drawing_mode = 'rect', stroke_width = 3, background_image = input_image) #predicted_image)
     
     if canvas_result.json_data is not None:
         objects = pd.json_normalize(canvas_result.json_data["objects"])
