@@ -5,12 +5,12 @@ import tensorflow as tf
 from tensorflow import keras
 
 #Identify the model path
-model_dir = 'model/' 
+model_dir = 'REIP/models/classifying_model/' 
 
 
 #load in model and weight 
-weightfile = model_dir+'REIP.10-0.8500.hdf5' #reading the model you trained above
-model = keras.models.load_model(model_dir+'REIP.h5') #load the basemodel, 
+weightfile = model_dir+'REIP.07-0.8818.hdf5' #reading the model you trained above
+model = keras.models.load_model(model_dir+'REIP0312.h5') #load the basemodel, 
 model.load_weights(weightfile) #add the weight file that just trained to the basemodel 
 #create a model to predict the feature space. 
 
