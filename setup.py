@@ -17,7 +17,7 @@ setup(name='REIP', version=1.0,
       author='Chi-Wei Lin, Ren-Mian Chin, Chang-Yow Leu, Hsuan-Yu Chen, Chia-Ying Yeh',
       python_requires=">=3.5",
       install_requires=[
-          "numpy==1.18.1",
+          "numpy==1.21.0",
           "pandas==1.0.3",
           "keras==2.3.1",
           "tensorflow==2.5.3",
