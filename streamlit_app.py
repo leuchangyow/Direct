@@ -7,9 +7,9 @@ import PIL
 import time
 import importlib
 from remove_cs import convert_to_dfimage, adjust_gray_value, show_edited_image
-import matplotlib
 from streamlit_cropper import st_cropper
 from streamlit_drawable_canvas import st_canvas
+from REIP.prediction.Prediction1 import prediction
 
 st.title('DIRECT Project')
 
@@ -39,23 +39,17 @@ blur.image(ex_blur)
 
 input_data = st.file_uploader('Upload your TEM experiment photo')
 realtime_update = st.sidebar.checkbox(label="Update in Real Time", value=True)
-box_color = st.sidebar.color_picker(label="Box Color", value='#0000FF')
-aspect_choice = st.sidebar.radio(label="Aspect Ratio", options=["1:1", "16:9", "4:3", "2:3", "Free"])
-aspect_dict = {
-    "1:1": (1, 1),
-    "16:9": (16, 9),
-    "4:3": (4, 3),
-    "2:3": (2, 3),
-    "Free": None
-}
-aspect_ratio = aspect_dict[aspect_choice]
+gray_level = st.sidebar.slider('Surface charge remove level', -20, 30, 1)
 
 if input_data is not None:
     input_image = PIL.Image.open(input_data)
     st.image(input_image)
+    prediction(input_image)
     st.write('Uploaded the photo')
     if not realtime_update:
         st.write("Double click to save crop")
+        
+    
 
     canvas_result = st_canvas(height = 300, width = 300, fill_color = 0 , drawing_mode = 'rect', stroke_width = 3, background_image = input_image)
     
@@ -67,8 +61,8 @@ if input_data is not None:
         df_image = convert_to_dfimage(input_image)
         st.dataframe(df_image)
         start_point = [objects['left'][0],objects['top'][0]] 
-        end_point = [objects['left'][0]+objects['width'][0], objects['top'][0]+objects['height'][0]]
-        df_copied = adjust_gray_value(df_image, start_point, end_point, level = 7)
+        end_point = [objects['left'][0]+objects['height'][0], objects['top'][0]+objects['width'][0]]
+        df_copied = adjust_gray_value(df_image, start_point, end_point, level = gray_level)
         st.dataframe(df_copied)
         edited_image = show_edited_image(df_copied)
         st.image(edited_image)
