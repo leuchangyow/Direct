@@ -25,4 +25,4 @@ def prediction(image_folder_path): # ex : '/gdrive/My Drive/REIP/imagedata/clear
     predictions = model(input_arr)
     predict = reip_dict.get(np.argmax(predictions[0]))
     pre_string = f'It is predicted to be {predict}.'
-    return {pre_string:np_image}
+    return [pre_string,cv2.resize(np.array(image)[0:890, :],(300,300))]
