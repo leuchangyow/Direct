@@ -4,10 +4,12 @@ import streamlit as st
 import PIL
 import time
 import importlib
-from REIP.image_processing.remove_cs import convert_to_dfimage, adjust_gray_value, show_edited_image
+#from REIP.image_processing.remove_cs import convert_to_dfimage, adjust_gray_value, show_edited_image
 #from streamlit_cropper import st_cropper
 from streamlit_drawable_canvas import st_canvas
-from REIP.prediction.Prediction1 import prediction
+from REIP.prediction.Prediction import prediction
+import os
+from PIL import Image
 
 st.title('DIRECT Project')
 
@@ -34,19 +36,30 @@ blur.subheader('Blur Charge Example')
 ex_blur = PIL.Image.open('./1386.tif')
 blur.image(ex_blur)
 
+temp='./temp/'
 
-input_data = st.file_uploader('Upload your TEM experiment photo')
+input_data = st.file_uploader('Upload your TEM experiment photo',type=['png','tif','jpg','jpg','tiff'])
 realtime_update = st.sidebar.checkbox(label="Update in Real Time", value=True)
 gray_level = st.sidebar.slider('Surface charge remove level', -20, 30, 1)
 
+def save_uploaded_file(uploaded_file):
+    try:
+        with open(os.path.join(temp,uploaded_file.name),'wb') as f:
+            f.write(uploaded_file.getbuffer())
+        return 1    
+    except:
+        return 0
+
 if input_data is not None:
-    input_image = PIL.Image.open(input_data)
-    st.image(input_image)
-    prediction(input_image)
-    st.write(input_image[0])
-    predicted_image = input_image[1]
-    if not realtime_update:
-        st.write("Double click to save crop")
+    if save_uploaded_file(input_data): 
+        display_image = Image.open(input_data)
+        st.image(display_image)
+        prediction = prediction(os.path.join(temp,input_data.name))
+        st.write(prediction[0])
+        st.image(prediction[1])
+        os.remove(temp+input_data.name)
+    else:
+        st.write('saving image failed')
 
     canvas_result = st_canvas(height = 300, width = 300, fill_color = 0 , drawing_mode = 'rect', stroke_width = 3, background_image = input_image) #predicted_image)
     
