@@ -10,6 +10,25 @@ from keras.preprocessing.image import load_img
 from keras.preprocessing.image import img_to_array
 from keras.preprocessing.image import ImageDataGenerator
 from matplotlib import pyplot
+import streamlit as st
+blur_method = ['Click here select method', 'img_processing', 'enhance_details', 'edsr', 'espcn', 'fsrcnn', 'lapsrn']
+blur_list = pd.DataFrame(blur_method)
+
+def blur_function_selection(img_array):
+    methods= st.selectbox('Choose blur restoration method', options=blur_list, index=0, key = '1')
+    if methods == 'Click here select method':
+        return img_array
+    else:
+        ml = eval(methods)
+        result_array = ml((img_array))
+        result_array_copied = result_array.copy()
+        return result_array_copied
+def restore_again(img_array):
+    Answer= st.radio('Further improve blur?', options=['Remian','Restore Blur'], index=0, key = '0')
+    if Answer == 'Restore Blur':
+        blur_function_selection(img_array)
+    elif Answer == 'Remain':
+        return img_array
 
 def show_img(img, bigger=False):
     if bigger:
@@ -41,7 +60,7 @@ def enhance_details(img):
 def edsr(origin_img):
     sr = cv2.dnn_superres.DnnSuperResImpl_create()
 
-    path = "EDSR_x4.pb"
+    path = "./EDSR_x4.pb"
 
     sr.readModel(path)
 
