@@ -11,7 +11,7 @@ The goal of this project is to develop a software to help new comer students to 
 Package REIP has following main dependencies:
 1. Python = 3.7
 2. opencv
-3. Tensorflow = 2.
+3. Tensorflow = 2.7
 
 ## Installation:
 1. In your terminal, run <code>git clone https://github.com/leuchangyow/REIP.git</code>
