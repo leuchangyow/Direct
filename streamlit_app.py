@@ -5,22 +5,15 @@ import streamlit as st
 from io import StringIO
 import PIL
 import time
-import importlib 
+import importlib
 import matplotlib.pyplot as plt
-from REIP.image_processing.remove_cs import convert_to_dfimage, adjust_gray_value, show_edited_image, from3d_array_image, convert_to_RGB3darra
-#from REIP.image_processing.remove_cs import convert_to_dfimage, adjust_gray_value, show_edited_image
-#from streamlit_cropper import st_cropper
-
+from REIP.image_processing.remove_cs import convert_to_dfimage, adjust_gray_value, show_edited_image, from3d_array_image, convert_to_RGB3darray
 from streamlit_drawable_canvas import st_canvas
 from REIP.prediction.Prediction import prediction
 import os
-<<<<<<< HEAD
 import cv2
 
 from PIL import Image
-=======
-
->>>>>>> f109c44d5552bc1c6ceee749318c65b3ef556041
 from REIP.image_processing.restore_blur import img_processing, edsr, espcn, fsrcnn, lapsrn, uint_to_float, enhance_details, restore_again, blur_function_selection
 #parameter settting
 blur_method = ['Click here select method','img_processing', 'enhance_details', 'edsr', 'espcn', 'fsrcnn', 'lapsrn']
@@ -31,8 +24,6 @@ blur_description = ['Sharpen the edge area with automatically modifying contrast
 blur_list = pd.DataFrame({'method':blur_method[1:],'Description':blur_description})
 blur_list.set_index('method')
 ##########
-
-
 st.title('DIRECT Project')
 
 'History'
@@ -71,20 +62,6 @@ def save_uploaded_file(uploaded_file):
         return 1    
     except:
         return 0
-
-
-
-if input_data is not None:
-    if save_uploaded_file(input_data): 
-        display_image = Image.open(input_data)
-        st.image(display_image)
-        prediction = prediction(os.path.join(temp,input_data.name))
-        st.write(prediction[0])
-        st.image(prediction[1])
-        os.remove(temp+input_data.name)
-    else:
-        st.write('saving image failed')
-
 
 if input_data is not None:
     if save_uploaded_file(input_data): 
@@ -170,7 +147,8 @@ if input_data is not None:
                 os.remove(temp+input_data.name)
                 
             elif Answer == 'No':
-                image = PIL.Image.fromarray(result_img)
+                result_2img = cv2.resize(result_img, (1280,890))
+                image = PIL.Image.fromarray(result_2img)
                 remain_output = image.save(temp+input_data.name)
                 with open(os.path.join(temp,input_data.name),'rb') as f:
                     btn = st.download_button(label="Download edited image", data=f, file_name=input_data.name, mime="image/tif")
