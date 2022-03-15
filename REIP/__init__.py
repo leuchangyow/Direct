@@ -1,2 +1,2 @@
-import streamlit-drawable-canvas
-from streamlit-drawable-canvas import st_canvas
+import streamlit_drawable_canvas
+from streamlit_drawable_canvas import st_canvas
