@@ -4,18 +4,25 @@ import pandas as pd
 import streamlit as st
 import PIL
 import time
-import importlib
+import importlib 
 import matplotlib.pyplot as plt
 from REIP.image_processing.remove_cs import convert_to_dfimage, adjust_gray_value, show_edited_image, from3d_array_image, convert_to_RGB3darray
+=======
+#from REIP.image_processing.remove_cs import convert_to_dfimage, adjust_gray_value, show_edited_image
+#from streamlit_cropper import st_cropper
+
 from streamlit_drawable_canvas import st_canvas
 from REIP.prediction.Prediction import prediction
 import os
-from PIL import Image
+
 from REIP.image_processing.restore_blur import img_processing, edsr, espcn, fsrcnn, lapsrn, uint_to_float, enhance_details, restore_again, blur_function_selection
 #parameter settting
 blur_method = ['img_processing', 'enhance_details', 'edsr', 'espcn', 'fsrcnn', 'lapsrn']
 blur_list = pd.DataFrame(blur_method)
 ##########
+=======
+
+
 st.title('DIRECT Project')
 
 'History'
@@ -54,6 +61,20 @@ def save_uploaded_file(uploaded_file):
         return 1    
     except:
         return 0
+
+
+
+if input_data is not None:
+    if save_uploaded_file(input_data): 
+        display_image = Image.open(input_data)
+        st.image(display_image)
+        prediction = prediction(os.path.join(temp,input_data.name))
+        st.write(prediction[0])
+        st.image(prediction[1])
+        os.remove(temp+input_data.name)
+    else:
+        st.write('saving image failed')
+
 
 if input_data is not None:
     if save_uploaded_file(input_data): 
