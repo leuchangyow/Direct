@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 from numpy import asarray
 import PIL
-from PIL import image
 
 def convert_to_dfimage(image):
     converted = image.convert('L')
