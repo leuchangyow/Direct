@@ -7,8 +7,7 @@ import PIL
 import time
 import importlib 
 import matplotlib.pyplot as plt
-from REIP.image_processing.remove_cs import convert_to_dfimage, adjust_gray_value, show_edited_image, from3d_array_image, convert_to_RGB3darray
-=======
+from REIP.image_processing.remove_cs import convert_to_dfimage, adjust_gray_value, show_edited_image, from3d_array_image, convert_to_RGB3darra
 #from REIP.image_processing.remove_cs import convert_to_dfimage, adjust_gray_value, show_edited_image
 #from streamlit_cropper import st_cropper
 
@@ -32,7 +31,6 @@ blur_description = ['Sharpen the edge area with automatically modifying contrast
 blur_list = pd.DataFrame({'method':blur_method[1:],'Description':blur_description})
 blur_list.set_index('method')
 ##########
-=======
 
 
 st.title('DIRECT Project')
