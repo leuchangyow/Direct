@@ -5,6 +5,7 @@ import streamlit as st
 import PIL
 import time
 import importlib
+import matplotlib.pyplot as plt
 from REIP.image_processing.remove_cs import convert_to_dfimage, adjust_gray_value, show_edited_image, from3d_array_image, convert_to_RGB3darray
 from streamlit_drawable_canvas import st_canvas
 from REIP.prediction.Prediction import prediction
@@ -33,11 +34,11 @@ st.title('How this project works?')
 
 sc, blur = st.columns(2)
 sc.subheader('Surface Charge Example')
-ex_surface_charge = PIL.Image.open('./498.tif')
+ex_surface_charge = PIL.Image.open('./doc/images/498.tif')
 sc.image(ex_surface_charge)
 
 blur.subheader('Blur Charge Example')
-ex_blur = PIL.Image.open('./1386.tif')
+ex_blur = PIL.Image.open('./doc/images/1386.tif')
 blur.image(ex_blur)
 
 temp='./temp/'
@@ -57,12 +58,9 @@ def save_uploaded_file(uploaded_file):
 if input_data is not None:
     if save_uploaded_file(input_data): 
         display_image = Image.open(input_data)
-        origin_photo, prediction_result = st.columns(2)
-        with origin_photo:
-            st.image(display_image)
+        st.image(display_image)
         prediction = prediction(os.path.join(temp,input_data.name))
-        with prediction_result:
-            st.header(prediction[0])
+        st.header(prediction[0])
         os.remove(temp+input_data.name)
     else:
         st.write('saving image failed')
@@ -73,14 +71,15 @@ if input_data is not None:
                                       drawing_mode = 'rect', 
                                       stroke_width = 3, 
                                       background_image = from3d_array_image(prediction[1]))
-    
+        if canvas_result.json_data is None:
+            st.stop()
         if canvas_result.json_data is not None:
+            
             objects = pd.json_normalize(canvas_result.json_data["objects"])
-            st.dataframe(objects)
             for col in objects.select_dtypes(include = ['object']).columns:
                 objects[col] = objects[col].astype('str')
             df_image = convert_to_dfimage(from3d_array_image(prediction[1]))
-        
+            
             start_point = [objects['left'][0],objects['top'][0]] 
             end_point = [objects['left'][0]+objects['width'][0], objects['top'][0]+objects['height'][0]]
             df_copied = adjust_gray_value(df_image, start_point, end_point, level = gray_level)
@@ -88,11 +87,7 @@ if input_data is not None:
             RGBarray = convert_to_RGB3darray(after_sc_image)
             st.subheader('After surface charge restoration')
             st.image(after_sc_image)
-            #st.write(type(RGBarray))
-            #st.write(RGBarray.shape)
             'type of restore_aga'
-            #st.write(type(restore_again(RGBarray)))
-            #st.image(PIL.Image.fromarray(restore_again(RGBarray)))
             Answer= st.radio('Further improve blur?', options=['Remian','Restore Blur'], index=0)
             if Answer == 'Restore Blur':
                 methods= st.selectbox('Choose blur restoration method', options=blur_list, index=0)
