@@ -34,7 +34,7 @@ REIP uses Convolutional Neural Network (CNN) for train the prediction model. Lat
 
 * Repair the imperfect images by their groups:
 1. Repair the blurred images by an automated function
-2. Repair the images with surface charge by a manual which requires you to frame the location of surface charge
+2. Repair the images with surface charge by a manual method which requires you to frame the location of surface charge
 
 
 ## Streamlit:
