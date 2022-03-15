@@ -5,7 +5,6 @@ import streamlit as st
 import PIL
 import time
 import importlib
-import matplotlib.pyplot as plt
 from REIP.image_processing.remove_cs import convert_to_dfimage, adjust_gray_value, show_edited_image, from3d_array_image, convert_to_RGB3darray
 from streamlit_drawable_canvas import st_canvas
 from REIP.prediction.Prediction import prediction
