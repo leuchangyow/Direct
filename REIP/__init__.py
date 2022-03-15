@@ -1,2 +1,2 @@
-__version__ = '1.0'
-from .core import plus
+import streamlit_drawable_canvas
+from streamlit_drawable_canvas import st_canvas
