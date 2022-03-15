@@ -3,7 +3,8 @@ import numpy as np
 import pandas as pd
 import glob
 from IPython.display import clear_output
-
+import matplotlib
+import matplotlib.pyplot as plt
 from numpy import expand_dims
 from keras.preprocessing.image import load_img
 from keras.preprocessing.image import img_to_array
