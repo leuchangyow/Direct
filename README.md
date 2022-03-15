@@ -46,7 +46,7 @@ In streamlit:
 1. Use "Browse files" to upload the image you want to use, and the classification result will automatically show up
 2. Due to the classification result, the corresponding restoration method will show up
 3. For the surface charge restoration method, you first frame the surface charge area, then use the bar on the left hand side to adjust the brightness.After the surface charge restoration, you can also proceed the blurred image restoration
-4. For the blurred image restoration, there are 6 kinds of methods you can choose, which are img_processing', 'enhance_details', 'edsr', 'espcn', 'fsrcnn' and 'lapsrn' (see <a href=https://github.com/leuchangyow/REIP/blob/main/doc/method_description.ipynb>method description</a> . You can choose each of them to repair the blurred image. SeeMoreover, you can also do another method after your first one is completed.
+4. For the blurred image restoration, there are 6 kinds of methods you can choose, which are img_processing', 'enhance_details', 'edsr', 'espcn', 'fsrcnn' and 'lapsrn' (see <a href=https://github.com/leuchangyow/REIP/blob/main/doc/method_description.ipynb>method description</a>) . You can choose each of them to repair the blurred image. SeeMoreover, you can also do another method after your first one is completed.
 
 
 ## Acknowledgment:
