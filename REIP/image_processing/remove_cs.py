@@ -3,6 +3,7 @@ import numpy as np
 from numpy import asarray
 import PIL
 
+
 def convert_to_dfimage(image):
     converted = image.convert('L')
     image_nparray = asarray(converted)
@@ -18,6 +19,7 @@ def adjust_gray_value(df, start_point, end_point, level = 9):
     """
     df_copied = df.copy()
     df_copied.iloc[start_point[1]:end_point[1], start_point[0]:end_point[0]] = df.iloc[start_point[1]:end_point[1], start_point[0]:end_point[0]] + level
+    
     return df_copied
 
 def show_edited_image(df_copied):
