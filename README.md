@@ -5,12 +5,12 @@
  
 ## Project Objective
 
-The goal of this project is to develop a software to help new comer students to get familiar in SEM. A common question for new comers is how to judge the quality of images. In this case, the software is developed to distinguish whether the image is noisy, well-exposed or suffer from unsharpness or blur with the function of image optimization. After the judgement from the software is been made, students decide whether spending time to optimize the image or not. Image restoration packages, such as pillow and open.cv, is included to optimize the picture in this software. Depending on the quality of the image, the restoration time varies. Receiving the final image, students are able to get the ideal images for their research.
+The goal of this project is to develop a software to help new comer students to get familiar with SEM. A common question for new comers is how to judge the quality of images. In this case, the software is developed to distinguish whether the image is clear, blurred or suffers from surface charge. Moreover, with the classification results, students could decide whether spending time to restore the image or not. Image restoration packages, such as pillow and open.cv, is included to optimize the picture in this software. Depending on the quality of the image, the restoration time varies. Receiving the final image, students are able to get the ideal images for their research.
 
 ## Requirements:
 Package REIP has following main dependencies:
 1. Python = 3.7
-2. opencv
+2. OpenCV
 3. Tensorflow = 2.7
 
 ## Installation:
