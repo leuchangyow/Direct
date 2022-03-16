@@ -5,4 +5,4 @@
 4. streamlit: It contains all the py files and packages you need to conduct this project on streamlit.
 
 
-Moreover, The label.csv is the labeling file we used in the cnn process.
+Moreover, the label.csv is the labeling file we used in the cnn process.
