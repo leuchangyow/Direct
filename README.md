@@ -7,6 +7,11 @@
 
 The goal of this project is to develop a software to help new comer students to get familiar with SEM. A common question for new comers is how to judge the quality of images. In this case, the software is developed to distinguish whether the image is clear, blurred or suffers from surface charge. Moreover, with the classification results, students could decide whether spending time to restore the image or not. Image restoration packages, such as pillow and open.cv, is included to optimize the picture in this software. Depending on the quality of the image, the restoration time varies. Receiving the final image, students are able to get the ideal images for their research.
 
+## Guide of this directory
+1. Most of the functions we used in this project are in the REIP folder, including the image restoration functions, the cnn model, the cnn prediction function and the functions used to conduct streamlit.
+2. The doc folder contains the descriptions of the image restoration packages and the user cases. Moreover, the **project ppt** is also in this folder.
+3. The examples folder includes the notebooks of constructing the cnn model and the image restoration methods.
+
 ## Requirements:
 Package REIP has following main dependencies:
 1. Python = 3.7
