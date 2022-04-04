@@ -20,7 +20,7 @@ Package REIP has following main dependencies:
 
 ## Installation:
 1. In your terminal, run <code>git clone https://github.com/leuchangyow/REIP.git</code>
-2. Install and activate the environment with REIP.yml
+2. Install and activate REIP environment by typing conda env create -f REIP.yml and conda activate REIP.yml
 3. Change the directory to REIP root directory, by running <code>cd REIP</code> 
 4. Run <code>python setup.py install</code>
 5. To check installation run, <code>python -c "import REIP"</code> in your terminal
