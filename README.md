@@ -19,7 +19,7 @@ Package REIP has following main dependencies:
 3. Tensorflow = 2.7
 
 ## Installation:
-1. In your terminal, run <code>git clone https://github.com/leuchangyow/REIP.git</code>
+1. In your terminal, run <code>git clone https://github.com/leuchangyow/REIP.git</code> and cd into it
 2. Install and activate REIP environment by typing <code>conda env create -f REIP.yml</code> and <code>conda activate REIP.yml</code>
 3. Change the directory to REIP root directory, by running <code>cd REIP</code> 
 4. Make sure you've download the streamlit package, if not type <code>pip install steamlit</code>
